@@ -6,7 +6,7 @@ resource "aws_instance" "ubuntu" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
   tags = {
-    Name = ""
+    Name = "Ubuntu-Web"
   }
 }
 
