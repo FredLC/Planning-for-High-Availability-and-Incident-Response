@@ -1,24 +1,24 @@
 # Instructions
 1. Open your AWS console
 
-2. Change your region to `us-east-2`. From the AWS console create an S3 bucket in `us-east-2` called `udacity-tf-<your_name>` e.g `udacity-tf-tscotto`
+2. Change your region to `us-east-2`. From the AWS console create an S3 bucket in `us-east-2` called `udacity-tf-flc` e.g `udacity-tf-tscotto`
     - click next until created.
-    - Update `_config.tf` in the `Lesson-5-rds-deploy/demo/zone1` folder with your S3 bucket name where you will replace `<your_name>` with your name
+    - Update `_config.tf` in the `Lesson-5-rds-deploy/demo/zone1` folder with your S3 bucket name where you will replace `flc` with your name
 
-3. Change your region to `us-west-1`. From the AWS console create an S3 bucket in `us-west-1` called `udacity-tf-<your_name>` e.g `udacity-tf-tscotto`
+3. Change your region to `us-west-1`. From the AWS console create an S3 bucket in `us-west-1` called `udacity-tf-flc` e.g `udacity-tf-tscotto`
     - click next until created.
-    - Update `_config.tf` in the `Lesson-5-rds-deploy/demo/zone2` folder with your S3 bucket name where you will replace `<your_name>` with your name
+    - Update `_config.tf` in the `Lesson-5-rds-deploy/demo/zone2` folder with your S3 bucket name where you will replace `flc` with your name
 
 4. Open CloudShell, Copy the AMI to your account
 
    **Restore image**
     ```shell
-    aws ec2 create-restore-image-task --object-key ami-0ec6fdfb365e5fc00.bin --bucket udacity-srend --name "udacity-<your_name>" --region us-east-1
+    aws ec2 create-restore-image-task --object-key ami-0ec6fdfb365e5fc00.bin --bucket udacity-srend --name "udacity-flc" --region us-east-1
     ```
     <!-- - Replace the owner field in `_data.tf` with your Amazon owner ID assigned on the AMI (you can get this in the console by going to EC2 - AMIs and selecting the Owned by me at the top filter) -->
     - Take note of that AMI ID the script just output. Copy the AMI to `us-east-2` and `us-west-1`:
-        - `aws ec2 copy-image --source-image-id <your-ami-id-from-above> --source-region us-east-1 --region us-east-2 --name "udacity-<your_name>"`
-        - `aws ec2 copy-image --source-image-id <your-ami-id-from-above> --source-region us-east-1 --region us-west-1 --name "udacity-<your_name>"`
+        - `aws ec2 copy-image --source-image-id <your-ami-id-from-above> --source-region us-east-1 --region us-east-2 --name "udacity-flc"`
+        - `aws ec2 copy-image --source-image-id <your-ami-id-from-above> --source-region us-east-1 --region us-west-1 --name "udacity-flc"`
 
     - Make note of the ami output from the above 2 commands. You'll need to put this in the `ec2.tf` file for `zone1` for `us-east-2` and in `ec2.tf` file for `zone2` for `us-west-1` respectively
 
